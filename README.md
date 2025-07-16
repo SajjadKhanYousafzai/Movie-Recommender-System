@@ -1,9 +1,6 @@
 # 🎥 CineMatch: Intelligent Movie Recommender System
 Your AI-powered guide to finding movies you’ll love.
 
-## 📽️ Live Preview
-🔗 *Coming Soon* — Deploy it on [Streamlit Cloud](https://streamlit.io/cloud) or [Render](https://render.com)
-
 ## 🌟 Overview
 CineMatch is a smart, content-based movie recommender system built using:
 
@@ -36,6 +33,8 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 | **Packaging**     | pickle for model/data storage          |
 
 ## 📂 Project Structure
+
+```bash
 CineMatch/
 ├── app.py
 ├── movie_list.pkl
@@ -46,6 +45,8 @@ CineMatch/
 │   └── tmdb_5000_credits.csv
 ├── requirements.txt
 └── README.md
+```
+
 
 
 ## ⚙️ How to Run Locally
