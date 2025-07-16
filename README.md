@@ -13,7 +13,7 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 ## 🖼️ Screenshots
 | Home Page | Recommendations |
 |-----------|-----------------|
-| *Image coming soon* | *Image coming soon* |
+| ![CineMatch Home Page](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/1.png) | ![CineMatch Recommendations](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/3.png) |
 
 ## 🚀 Features
 - 🎯 Smart movie recommendations using TF-IDF + Cosine Similarity
