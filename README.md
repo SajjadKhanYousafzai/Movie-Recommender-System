@@ -11,9 +11,9 @@ CineMatch is a smart, content-based movie recommender system built using:
 Get recommendations for similar movies based on plot, genres, cast, crew, and keywords — complete with posters, ratings, and overviews.
 
 ## 🖼️ Screenshots
-| Home Page | Recommendations |
+| Home Page | Cover Photo |Recommendations |
 |-----------|-----------------|
-| ![CineMatch Home Page](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/1.png) | ![CineMatch Recommendations](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/3.png) |
+| ![CineMatch Home Page](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/1.png) |  ![CineMatch Home Page](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/2.png) | ![CineMatch Recommendations](https://raw.githubusercontent.com/SajjadKhanYousafzai/Movie-Recommender-System/main/screenshots/3.png) |
 
 ## 🚀 Features
 - 🎯 Smart movie recommendations using TF-IDF + Cosine Similarity
