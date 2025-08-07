@@ -137,9 +137,9 @@ def recommend(movie, sort_by='similarity'):
 # Print current working directory for debugging
 print("Current working directory:", os.getcwd())
 
-# Load pickled files
-movies_path = 'movie_list.pkl'
-similarity_path = 'similarity.pkl'
+# Load pickled files from models directory
+movies_path = 'models/movie_list.pkl'
+similarity_path = 'models/similarity.pkl'
 
 # Check file existence
 print("Movies file exists:", os.path.exists(movies_path))
@@ -148,8 +148,9 @@ print("Similarity file exists:", os.path.exists(similarity_path))
 try:
     movies = pickle.load(open(movies_path, 'rb'))
     similarity = pickle.load(open(similarity_path, 'rb'))
+    print("✅ Models loaded successfully from models/ folder")
 except FileNotFoundError as e:
-    st.error(f"Error: File not found - {e}. Please ensure the model files are in the correct directory.")
+    st.error(f"Error: File not found - {e}. Please ensure the model files are in the models/ directory.")
     st.stop()
 
 # Main app header
@@ -168,8 +169,8 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("**About CineMatch**")
     st.write("CineMatch uses machine learning to recommend movies based on content similarity. Powered by TMDB API.")
-    st.markdown("---")
-    st.markdown("**API Key**: 8265bd1679663a7ea12ac168da84d2e8")
+    # st.markdown("---")
+    # st.markdown("**API Key**: 9265bd1679663a7ea12ac168da84d2e9")
 
 # Movie selection
 movie_list = movies['title'].values

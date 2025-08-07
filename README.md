@@ -37,9 +37,10 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 ```bash
 CineMatch/
 ├── app.py
-├── movie_list.pkl
-├── similarity.pkl
-├── tfidf_vectorizer.pkl
+├── models/
+│   ├── movie_list.pkl
+│   ├── similarity.pkl
+│   └── tfidf_vectorizer.pkl
 ├── Dataset/
 │   ├── tmdb_5000_movies.csv
 │   └── tmdb_5000_credits.csv

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender System</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+        body { background: #181c24; color: #fff; font-family: 'Montserrat', Arial, sans-serif; }
+        .navbar { background: #23272f; }
+        .navbar-brand { color: #ffb347 !important; font-size: 2rem; font-weight: bold; }
+        .select2-container--default .select2-selection--single { background: #23272f; color: #fff; border: 1px solid #444; border-radius: 8px; }
+        .select2-results__option { color: #23272f; }
+        .movie-card { background: #23272f; border-radius: 16px; box-shadow: 0 2px 16px #181c2433; margin: 1rem 0; padding: 1rem; display: flex; gap: 1.5rem; align-items: flex-start; }
+        .movie-card img { border-radius: 12px; width: 120px; height: 180px; object-fit: cover; }
+        .movie-card h3 { color: #ffb347; margin-bottom: 0.5rem; }
+        .movie-list { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+        .movie-list .movie-card { flex-direction: column; align-items: center; width: 220px; min-height: 420px; }
+        .about-section { background: rgba(35,39,47,0.93); margin:2rem auto 2rem auto; padding:2rem 1.5rem; border-radius:12px; max-width:700px; box-shadow:0 2px 16px #181c2433; }
+        .about-section h2 { color: #ffb347; text-align:center; margin-bottom:1rem; }
+        .about-section p { font-size:1.1rem; line-height:1.7; color:#f5f5f5; text-align:center; }
+        .footer { color: #aaa; text-align: center; margin: 2rem 0 0 0; }
+        .select2-selection__rendered { color: #fff !important; }
+        .select2-selection { background: #23272f !important; }
+        .select2-dropdown { background: #23272f !important; color: #23272f !important; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">🎬 CineMatch</a>
+    <div class="collapse navbar-collapse">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://www.themoviedb.org/" target="_blank">TMDB</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <h1 class="text-center mb-4" style="color:#ffb347;">Find Your Next Favorite Movie</h1>
+  <form method="POST" class="row g-3 justify-content-center" autocomplete="off">
+    <div class="col-md-6">
+      <label for="movie" class="form-label">Movie</label>
+      <select id="movie" name="movie" class="form-select" required>
+        <option value="">Type or select a movie...</option>
+        {% for movie in movie_list %}
+          <option value="{{ movie }}" {% if selected_movie_data and selected_movie_data.title == movie %}selected{% endif %}>{{ movie }}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="col-md-3">
+      <label for="sort_by" class="form-label">Sort by</label>
+      <select name="sort_by" id="sort_by" class="form-select">
+        <option value="similarity" {% if sort_by == 'similarity' %}selected{% endif %}>Similarity</option>
+        <option value="rating" {% if sort_by == 'rating' %}selected{% endif %}>Rating</option>
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name</option>
+      </select>
+    </div>
+    <div class="col-md-2 d-flex align-items-end">
+      <button type="submit" class="btn btn-warning w-100" id="recommend-btn">Recommend</button>
+    </div>
+  </form>
+  {% if error %}
+    <div class="alert alert-danger mt-4" role="alert">{{ error }}</div>
+  {% endif %}
+  {% if selected_movie_data %}
+    <section class="selected-movie mt-5">
+      <h2 class="text-center mb-3" style="color:#ffb347;">Selected Movie</h2>
+      <div class="movie-card mx-auto" style="max-width:600px;">
+        <img src="{{ selected_movie_data.poster }}" alt="Poster">
+        <div>
+          <h3>{{ selected_movie_data.title }}</h3>
+          <p><strong>Rating:</strong> {{ selected_movie_data.rating }}</p>
+          <p>{{ selected_movie_data.overview }}</p>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+  {% if recommended_movies %}
+    <section class="recommendations mt-5">
+      <h2 class="text-center mb-3" style="color:#ffb347;">Recommended Movies</h2>
+      <div class="movie-list">
+        {% for name, poster, overview, rating in recommended_movies %}
+        <div class="movie-card">
+          <img src="{{ poster }}" alt="Poster">
+          <div>
+            <h3>{{ name }}</h3>
+            <p><strong>Rating:</strong> {{ rating }}</p>
+            <p>{{ overview }}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+  <section id="about" class="about-section mt-5">
+    <h2>About This Project</h2>
+    <p>
+      <strong>CineMatch</strong> helps you discover movies you might love!<br><br>
+      Type a movie name and get recommendations based on content and ratings.<br>
+      Powered by machine learning and <a href="https://www.themoviedb.org/" target="_blank" style="color:#ffb347;text-decoration:underline;">TMDB</a>.<br><br>
+      <em>Built with Flask, Python, and a passion for movies. Enjoy exploring!</em>
+    </p>
+  </section>
+  <footer class="footer mt-5">
+    <p>Made with ❤️ using Flask & TMDB API</p>
+  </footer>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- jQuery (required for Select2) -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Select2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('#movie').select2({
+    placeholder: 'Type or select a movie...',
+    width: '100%',
+    theme: 'default',
+    allowClear: true
+  });
+});
+</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+        </form>
