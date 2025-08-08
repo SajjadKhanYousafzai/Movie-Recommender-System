@@ -258,7 +258,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Sajjad Khan Yousafzai**
 - GitHub: [@SajjadKhanYousafzai](https://github.com/SajjadKhanYousafzai)
 - LinkedIn: [Connect with me](https://www.linkedin.com/in/sajjadkhanyousafzai)
-- Email: sajjadkhanyousafzai@example.com
+- Email: sajjadkhanyousafzai47@example.com
 
 ## ⭐ Support
 
