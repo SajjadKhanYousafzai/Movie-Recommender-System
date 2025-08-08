@@ -77,9 +77,6 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 
 ### Frontend
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
 ### Backend & ML
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
@@ -97,7 +94,7 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 
 | Layer | Technology | Purpose |
 |-------|------------|---------|
-| **Frontend** | Streamlit, HTML/CSS, JavaScript | Interactive web interface and styling |
+| **Frontend** | Streamlit | Interactive web interface and styling |
 | **Backend** | Python 3.8+ | Core application logic and data processing |
 | **Machine Learning** | Scikit-learn, TF-IDF, Cosine Similarity | Content-based recommendation algorithm |
 | **Data Processing** | Pandas, NumPy, NLTK | Data manipulation and text processing |
@@ -111,6 +108,7 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 🎬 CineMatch Movie Recommender System/
 ├── 📄 app.py                          # Main Streamlit application
 ├── 📓 movie_recommend_system.ipynb     # Jupyter notebook for ML pipeline
+├── 🧹 clean_notebook.py               # Notebook cleaning utility
 ├── 📋 requirements.txt                 # Python dependencies
 ├── 📖 README.md                        # Project documentation
 ├── 📂 Dataset/                         # Raw movie data
@@ -120,13 +118,9 @@ Get recommendations for similar movies based on plot, genres, cast, crew, and ke
 │   ├── 🎯 movie_list.pkl              # Processed movie data
 │   ├── 🧮 similarity.pkl              # Cosine similarity matrix
 │   └── 🔤 tfidf_vectorizer.pkl        # TF-IDF vectorizer model
-├── 📂 static/                          # Web assets
-│   ├── 🎨 css/style.css               # Custom styling
-│   ├── 🖼️ images/                     # Static images
-│   └── ⚡ js/main.js                  # JavaScript functionality
-├── 📂 templates/                       # HTML templates
-│   ├── 🏠 index.html                  # Main page template
-│   └── 🏠 index.html.bak              # Backup template
+├── 📂 notebooks/                       # Notebook exports and documentation
+│   ├── � movie_recommend_system.html # Exported notebook in HTML format
+│   └── 📖 README.md                   # Notebook documentation
 └── 📂 screenshots/                     # Demo images
     ├── 📸 1.png                       # Home page screenshot
     ├── 📸 2.png                       # Cover photo
